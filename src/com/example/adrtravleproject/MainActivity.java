@@ -31,6 +31,7 @@ public class MainActivity extends Activity{
     	
     	
     	/** 문제는 한번 push했는데 또하면 안된다는 거.....주석처리...0000000000000000000000000**/
+    	
     	MyDB mDB;
     	mDB = AllTheSource.getInstance().getDB();
     	mDB.open();
@@ -50,11 +51,16 @@ public class MainActivity extends Activity{
 	    	int longi = (int)mImageCursor.getDouble(columIndexLon);
 	    	String memo = null;
 	    	
-	    	mDB.createRec(img_id, date_taken, lat, longi, memo);
+	    	// Inserting image data into DB but it's already done
+	  //  	mDB.createRec(img_id, date_taken, lat, longi, memo);
 	    	
 	    	mImageCursor.moveToNext();
     	}
-    	mDB.close();
+    	mDB.close(); 
+    	
     	mImageCursor.close();
+    	
+    	// Get the images that are with geopoint
+    	AllTheSource.getInstance().getImagArea().getDataFromDB();
     }
 }

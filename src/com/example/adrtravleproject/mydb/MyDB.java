@@ -105,6 +105,14 @@ public class MyDB {
 				null, null, null, null, null);
 	}
 	
+	public Cursor fetchRecWithGeo(){
+		// Finding Latitude value != 0 // not sure whether it works
+		// another solution is when inserting db put NULL instead O
+		String[] params = {"0"};
+		return mDb.query(DATABASE_TABLE, new String[] {KEY_IMGID, KEY_DATE, KEY_LONGI, KEY_LATI, KEY_MEMO },
+				KEY_LATI + "!=" + Integer.parseInt(params[0]), null, null, null, null);
+	}
+	
 	public Cursor fetchRec(int img_id) throws SQLException{
 		Cursor mCursor = 
 				mDb.query(DATABASE_TABLE, new String[]
@@ -119,9 +127,7 @@ public class MyDB {
 	public boolean updateRec(){
 		return false;		
 	}
-
-
-
+	
 	
 
 }
