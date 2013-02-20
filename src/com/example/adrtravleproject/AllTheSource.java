@@ -20,7 +20,7 @@ public class AllTheSource {
 		instance = new AllTheSource();
 		instance.context = context;
 		instance.myDB = new MyDB(context);	
-		instance.imgArea = new ImagesArea();
+//		instance.imgArea = new ImagesArea();
 	}
 	
 	public static void close() {

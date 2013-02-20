@@ -19,6 +19,7 @@ public class MyDB {
 	public static final String KEY_LATI = "Latitude";
 	public static final String KEY_LONGI = "Longitude";
 	public static final String KEY_MEMO = "Memo";
+	public static final String KEY_PATH = "Path";
 	
 	private static final String TAG = "DbAdapter";
 	private DatabaseHelper mDbHelper;
@@ -30,11 +31,12 @@ public class MyDB {
 */	
 	private static final String DATABASE_CREATE = 
 			"create table data (" +
-			KEY_LATI + " INTEGER, " +
-			KEY_LONGI + " INTEGER, " +
+			KEY_LATI + " DOUBLE, " +
+			KEY_LONGI + " DOUBLE, " +
 			KEY_DATE + " INTEGER, " +
 			KEY_IMGID + " INTEGER PRIMARY KEY, " +
-			KEY_MEMO + " TEXT) ";
+			KEY_MEMO + " TEXT, " +
+			KEY_PATH + " TEXT) ";
 	
 	private static final String DATABASE_NAME = "TravleProj.db";
 	private static final String DATABASE_TABLE = "data";
@@ -80,13 +82,14 @@ public class MyDB {
 		mDbHelper.close();
 	}
 	
-	public long createRec(int img_id, int date, int lat, int longi, String memo){
+	public long createRec(int img_id, int date, double lat, double longi, String memo, String path){
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(KEY_IMGID, img_id);
 		initialValues.put(KEY_DATE, date);
 		initialValues.put(KEY_LATI, lat);
 		initialValues.put(KEY_LONGI, longi);
 		initialValues.put(KEY_MEMO, memo);
+		initialValues.put(KEY_PATH, path);
 		
 		return mDb.insert(DATABASE_TABLE, null, initialValues);
 	}
@@ -101,15 +104,15 @@ public class MyDB {
 	
 	public Cursor fetchAllRec(){
 		return mDb.query(DATABASE_TABLE, new String[]
-				{KEY_IMGID, KEY_DATE, KEY_LONGI, KEY_LATI, KEY_MEMO }, 
+				{KEY_IMGID, KEY_DATE, KEY_LONGI, KEY_LATI, KEY_MEMO, KEY_PATH }, 
 				null, null, null, null, null);
 	}
 	
 	public Cursor fetchRecWithGeo(){
 		// Finding Latitude value != 0 // not sure whether it works
 		// another solution is when inserting db put NULL instead O
-		String[] params = {"0"};
-		return mDb.query(DATABASE_TABLE, new String[] {KEY_IMGID, KEY_DATE, KEY_LONGI, KEY_LATI, KEY_MEMO },
+		String[] params = {"0"}; // is it 0?
+		return mDb.query(DATABASE_TABLE, new String[] {KEY_IMGID, KEY_DATE, KEY_LONGI, KEY_LATI, KEY_MEMO, KEY_PATH },
 				KEY_LATI + "!=" + Integer.parseInt(params[0]), null, null, null, null);
 	}
 	

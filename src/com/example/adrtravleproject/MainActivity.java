@@ -41,26 +41,28 @@ public class MainActivity extends Activity{
 	    	int columIndexDate = mImageCursor.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN);
 	    	int columIndexLat = mImageCursor.getColumnIndex(MediaStore.Images.Media.LATITUDE);
 	    	int columIndexLon = mImageCursor.getColumnIndex(MediaStore.Images.Media.LONGITUDE);
-	    	int titlecolum = mImageCursor.getColumnIndex(MediaStore.Images.Media.TITLE);    	
+	    	int columPath = mImageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
+	    	int titlecolum = mImageCursor.getColumnIndex(MediaStore.Images.Media.TITLE); 
+	    	
 	    	
 	    	// 
 	    	String title = mImageCursor.getString(titlecolum);
 	    	int img_id = mImageCursor.getInt(columIndexID);
 	    	int date_taken = mImageCursor.getInt(columIndexDate);
-	    	int lat = (int)mImageCursor.getDouble(columIndexLat);
-	    	int longi = (int)mImageCursor.getDouble(columIndexLon);
+	    	double lat = mImageCursor.getDouble(columIndexLat);
+	    	double longi = mImageCursor.getDouble(columIndexLon);
+	    	String path = mImageCursor.getString(columPath);
 	    	String memo = null;
 	    	
 	    	// Inserting image data into DB but it's already done
-	  //  	mDB.createRec(img_id, date_taken, lat, longi, memo);
+	    	// mDB.createRec(img_id, date_taken, lat, longi, memo, path);
 	    	
 	    	mImageCursor.moveToNext();
     	}
     	mDB.close(); 
-    	
     	mImageCursor.close();
     	
-    	// Get the images that are with geopoint
+    	// Get the images which are with geopoint
     	AllTheSource.getInstance().getImagArea().getDataFromDB();
     }
 }
