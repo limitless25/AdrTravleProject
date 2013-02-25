@@ -21,7 +21,6 @@ public class MainActivity extends Activity{
         /** init the source such as db **/
         AllTheSource.initialize(getApplicationContext());
         
-        
         /** getting info of images from SD card by using MediaStore contentprovider **/
     	String[] proj = null;
     	mImageCursor = managedQuery( MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, null, null, null);
@@ -30,12 +29,12 @@ public class MainActivity extends Activity{
     	mImageCursor.moveToFirst();
     	
     	
-    	/** 문제는 한번 push했는데 또하면 안된다는 거.....주석처리...0000000000000000000000000**/
+    	/** 문제는 한번 push했는데 또하면 안된다는 거.....주석처리...0000000000000000000000000 **/
     	
     	MyDB mDB;
     	mDB = AllTheSource.getInstance().getDB();
     	mDB.open();
-    	
+  /*  	
     	while(!mImageCursor.isAfterLast()){    	
 	    	int columIndexID = mImageCursor.getColumnIndex(MediaStore.Images.Media._ID);
 	    	int columIndexDate = mImageCursor.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN);
@@ -43,7 +42,6 @@ public class MainActivity extends Activity{
 	    	int columIndexLon = mImageCursor.getColumnIndex(MediaStore.Images.Media.LONGITUDE);
 	    	int columPath = mImageCursor.getColumnIndex(MediaStore.Images.Media.DATA);
 	    	int titlecolum = mImageCursor.getColumnIndex(MediaStore.Images.Media.TITLE); 
-	    	
 	    	
 	    	// 
 	    	String title = mImageCursor.getString(titlecolum);
@@ -55,10 +53,10 @@ public class MainActivity extends Activity{
 	    	String memo = null;
 	    	
 	    	// Inserting image data into DB but it's already done
-	    	// mDB.createRec(img_id, date_taken, lat, longi, memo, path);
+	    	mDB.createRec(img_id, date_taken, lat, longi, memo, path);
 	    	
 	    	mImageCursor.moveToNext();
-    	}
+    	} */ 
     	mDB.close(); 
     	mImageCursor.close();
     	

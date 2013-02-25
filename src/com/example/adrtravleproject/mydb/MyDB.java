@@ -35,8 +35,8 @@ public class MyDB {
 			KEY_LONGI + " DOUBLE, " +
 			KEY_DATE + " INTEGER, " +
 			KEY_IMGID + " INTEGER PRIMARY KEY, " +
-			KEY_MEMO + " TEXT, " +
-			KEY_PATH + " TEXT) ";
+			KEY_PATH + " TEXT, " +
+			KEY_MEMO + " TEXT) ";
 	
 	private static final String DATABASE_NAME = "TravleProj.db";
 	private static final String DATABASE_TABLE = "data";
@@ -83,6 +83,7 @@ public class MyDB {
 	}
 	
 	public long createRec(int img_id, int date, double lat, double longi, String memo, String path){
+		memo = "try";
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(KEY_IMGID, img_id);
 		initialValues.put(KEY_DATE, date);
@@ -112,7 +113,8 @@ public class MyDB {
 		// Finding Latitude value != 0 // not sure whether it works
 		// another solution is when inserting db put NULL instead O
 		String[] params = {"0"}; // is it 0?
-		return mDb.query(DATABASE_TABLE, new String[] {KEY_IMGID, KEY_DATE, KEY_LONGI, KEY_LATI, KEY_MEMO, KEY_PATH },
+		int a = Integer.parseInt(params[0]);
+		return mDb.query(DATABASE_TABLE, new String[] { KEY_LATI, KEY_LONGI, KEY_DATE, KEY_IMGID, KEY_PATH, KEY_MEMO },
 				KEY_LATI + "!=" + Integer.parseInt(params[0]), null, null, null, null);
 	}
 	
