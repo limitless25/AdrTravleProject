@@ -1,29 +1,23 @@
 package com.example.adrtravleproject.images;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.location.Address;
-import android.location.Geocoder;
-import android.util.Log;
 
-import com.example.adrtravleproject.AllTheSource;
-import com.example.adrtravleproject.mydb.MyDB;
-import com.google.android.maps.GeoPoint;
+import com.google.android.gms.maps.model.LatLng;
 
 public class ImagesArea {
-	private String country, state, locality; // 대한민국, 서울시, 강남구
-	private String fullAddr; // 대한민국 서울시 강남구 ~ 
-	private GeoPoint mGeopoint; // geoPoint of Area instance
+	public String country, state, locality; // 대한민국, 서울시, 강남구
+	public String fullAddr; // 대한민국 서울시 강남구 ~ 
+	private LatLng mLoc; // geoPoint of Area instance
 	double lat, longi;
-	String memo; 
+	String memo; // 메모는 사진 마다 따로 저장 되어야 하는데...못했다 음 이대로라면 지역마다 메모 한
+	// 아니면 승훈이 처럼 이미지 클래스를 따로 만들어서 저장해도 된다. 이건 추후 이야기해보
 	
 	
-	private ArrayList<String> imgPathList = new ArrayList<String>(); // uri of images in same Area
-	private static ArrayList<ImagesArea> imgAreaData = new ArrayList<ImagesArea>(); // list managing instances of ImageArea
+	public ArrayList<String> imgPathList = new ArrayList<String>(); // uri of images in same Area
+	public static ArrayList<ImagesArea> imgAreaData = new ArrayList<ImagesArea>(); // list managing instances of ImageArea
+	public static StringBuffer listOfLocal = new StringBuffer();
 	private int dataIdx;
 	private Context mCtx;
 	
@@ -39,11 +33,14 @@ public class ImagesArea {
 		memo = mmemo;
 		lat = mLat;
 		longi = mLongi;
+		mLoc = new LatLng(lat, longi);
 	}
-	
+	/*
 	public void getDataFromDB(){
 		MyDB mDB;
 		mDB = AllTheSource.getInstance().getDB();
+		ImagesArea imgArea = AllTheSource.getInstance().getImagArea();
+		
 		
 		mDB.open();
 		Cursor cursor = mDB.fetchRecWithGeo();
@@ -68,7 +65,7 @@ public class ImagesArea {
 	    	/** 
 	    	 *  i need to check which suburb these _lat and _longi belong, gangnam or sth
 	    	 */
-	    	
+	    	/*
 	    	Geocoder gc = new Geocoder(mCtx);
 	    	String addr = null;
 	    	String admAr = null;
@@ -98,13 +95,22 @@ public class ImagesArea {
 			}
 	    	
 	    	/** test for putting data into class value 
-	    	 * this is for the new Area
-	    	**/
-	    	imgAreaData.add( new ImagesArea(ctrName, admAr, local, _path, _memo, _lat, _longi) );
-	    	
-	    	/** is temp same as imgAreaData.get(0) by "temp = imgAreadata.get(0); "
-	    	 * if i change sth in temp, imgAreaData.get(0) also would be changed?
+	    	 * need to check whether local is repetition or not
 	    	 */
+	    	 
+	    	/** this is for the new Area
+	    	**//*
+	    	if( imgArea.listOfLocal.indexOf(local) == -1 ) {
+	    		imgArea.imgAreaData.add( new ImagesArea(ctrName, admAr, local, _path, _memo, _lat, _longi) );
+	    		imgArea.listOfLocal.append(local);
+	    	}
+	    	
+	    	else {
+	    		int idx = imgArea.listOfLocal.indexOf(local);
+	    		imgArea.imgAreaData.get(idx).imgPathList.add(_path);
+	    		//지역이 같으면 사진 주소만 추
+	    	}
+	    	
 	    	cursor.moveToNext();
     	}
 		
@@ -112,5 +118,9 @@ public class ImagesArea {
     	cursor.close();
 		// need to check there is a _id at number 3 in DB
 		
+	}
+	*/
+	public LatLng getLoc() {
+		return mLoc;
 	}
 }

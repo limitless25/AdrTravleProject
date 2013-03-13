@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <ImageView 
+        android:id="@+id/photo"
+        android:layout_width="116dp"
+        android:layout_height="100dp">
+    </ImageView>
+    
+    <LinearLayout 
+        android:id="@+id/info_inner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        
+        <TextView 
+            android:id="@+id/info_inner_title"
+            android:layout_width = "match_parent"
+            android:layout_height = "50dp"
+            android:hint="title"
+            android:textColor="#FF000000"
+            android:textSize="10dip">
+            </TextView>
+        
+    </LinearLayout>
+
+</LinearLayout>
