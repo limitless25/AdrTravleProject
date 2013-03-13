@@ -1,11 +1,11 @@
-package com.example.adrtravleproject;
+package com.example.adrtravelproject;
 
 import java.util.ArrayList;
 
 import android.content.Context;
 
-import com.example.adrtravleproject.images.ImagesArea;
-import com.example.adrtravleproject.mydb.MyDB;
+import com.example.adrtravelproject.images.ImagesArea;
+import com.example.adrtravelproject.mydb.MyDB;
 
 public class AllTheSource {
 	private static AllTheSource instance = null;

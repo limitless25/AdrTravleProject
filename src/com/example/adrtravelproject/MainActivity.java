@@ -1,4 +1,4 @@
-package com.example.adrtravleproject;
+package com.example.adrtravelproject;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,8 +12,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.TabHost;
 
-import com.example.adrtravleproject.images.ImagesArea;
-import com.example.adrtravleproject.mydb.MyDB;
+import com.example.adrtravelproject.images.ImagesArea;
+import com.example.adrtravelproject.mydb.MyDB;
 
 public class MainActivity extends TabActivity{
 	

@@ -15,9 +15,9 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.adrtravleproject.AllTheSource;
+import com.example.adrtravelproject.AllTheSource;
+import com.example.adrtravelproject.images.ImagesArea;
 import com.example.adrtravleproject.R;
-import com.example.adrtravleproject.images.ImagesArea;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
